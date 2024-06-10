@@ -1,0 +1,55 @@
+Répertorie les fonctions utile pour le code DGHV
+https://gmplib.org/manual/Function-Index
+
+Pointer :
+    mpz_ptr for pointers to the element type in mpz_t
+    mpz_srcptr for const pointers to the element type in mpz_t
+
+Initialisation et libération de mémoire :
+    void mpz_init(mpz_t rop)
+    void mpz_clear(mpz_t rop)
+
+Affectation :
+    void mpz_set(mpz_t rop, const mpz_t op)
+    void mpz_set_ui(mpz_t rop, unsigned long int op)
+    void mpz_set_si(mpz_t rop, signed long int op)
+    void mpz_set_str(mpz_t rop, const char *str, int base)
+
+Initialisation et Affectation : 
+    void mpz_init_set (mpz_t rop, const mpz_t op)
+    void mpz_init_set_ui (mpz_t rop, unsigned long int op)
+    void mpz_init_set_si (mpz_t rop, signed long int op)
+    int mpz_init_set_str (mpz_t rop, const char *str, int base)
+
+Opérations arithmétiques :
+    Addition : void mpz_add(mpz_t rop, const mpz_t op1, const mpz_t op2)
+    Soustraction : void mpz_sub(mpz_t rop, const mpz_t op1, const mpz_t op2)
+    Multiplication : void mpz_mul(mpz_t rop, const mpz_t op1, const mpz_t op2)
+    Division entière : void mpz_divexact (mpz_t q, const mpz_t n, const mpz_t d) 
+    Division entière : void mpz_divexact_ui (mpz_t q, const mpz_t n, unsigned long d)
+    Modulo : void mpz_mod(mpz_t rop, const mpz_t op1, const mpz_t op2)
+    Modulo : unsigned long int mpz_mod_ui (mpz_t r, const mpz_t n, unsigned long int d)
+    Exponentiation_modulaire : void mpz_pow_ui(mpz_t rop, const mpz_t base, unsigned long int exp) : base^exp % mod -> rop.
+    Exponentiation_modulaire : void mpz_powm (mpz_t rop, const mpz_t base, const mpz_t exp, const mpz_t mod)
+    Exponentiation : void mpz_pow_ui (mpz_t rop, const mpz_t base, unsigned long int exp) : base^exp -> rop
+    Exponentiation : void mpz_ui_pow_ui (mpz_t rop, unsigned long int base, unsigned long int exp)
+    Racine carrée : void mpz_sqrt(mpz_t rop, const mpz_t op)
+    Factorielle : void mpz_fac_ui(mpz_t rop, unsigned long int n)
+
+Comparaison :
+    int mpz_cmp(const mpz_t op1, const mpz_t op2) : Return a positive value if op1 > op2, zero if op1 = op2, or a negative value if op1 < op2.  
+    int mpz_cmp_ui(const mpz_t op1, unsigned long int op2)
+    int mpz_sgn(const mpz_t op) : Return +1 if op > 0, 0 if op = 0, and -1 if op < 0.
+
+Random :
+    void mpz_urandomb_ui (mpz_t rop, gmp_randstate_t state, unsigned long n) : Generate a uniformly distributed random integer in the range 0 to 2^n-1, inclusive.
+    void mpz_urandomm (mpz_t rop, gmp_randstate_t state, unsigned long n) : Generate a uniform random integer in the range 0 to n-1, inclusive.
+    void gmp_randinit_default (gmp_randstate_t state)
+    void gmp_randseed (gmp_randstate_t state, const mpz_t seed)
+    void gmp_randseed_ui (gmp_randstate_t state, unsigned long int seed)
+
+Test primalité :
+    int mpz_probab_prime_p (const mpz_t n, int reps) : retourne : 2 -> sûr que n premier, 1 -> n premier avec une erreur de 4^(-reps), 0 sûr que n non premier (test : Baillie-PSW, then Miller-Rabin)
+
+Affichage :
+    int gmp_printf (const char *fmt, ...) : %Zd pour les mpz_t
